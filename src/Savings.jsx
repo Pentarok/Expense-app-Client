@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import {  faDollarSign, faCalendar, faComment, faMessage } from '@fortawesome/free-solid-svg-icons';
-import savingsList from './savingsList';
+import savingsList from './SavingsList';
 import { faCircle } from "@fortawesome/free-solid-svg-icons";
 import { useQuery } from '@tanstack/react-query';
 import TransactionForm from './TransactionForm';
