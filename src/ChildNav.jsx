@@ -79,7 +79,7 @@ const ChildNav = ({ tab, setOpenTab, isExpense, setIsExpense, setMenuOpen, menuO
   return (
     <div
       className={`
-        ${isMd ? 'relative w-[350px] h-[400px]' : ''} 
+        ${isMd ? 'relative min-w-[200px] h-[400px]' : ''} 
         ${!isMd && menuOpen ? ' h-[400px] w-[100px] min-w-[200px] z-40 top-10 left-0  ' : ''} 
         ${!isMd && !menuOpen ? 'hidden' : ''}  
         bg-slate-200 rounded-xl p-2 shadow-lg transition-transform duration-300 ease-in-out

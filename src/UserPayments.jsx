@@ -27,7 +27,7 @@ const UserPayments = () => {
   }, [userId]);
 
   return (
-    <div className='flex max-w-[600px] flex-col'>
+    <div className='flex max-w-full flex-col'>
       <TransactionsTable
         transactions={transData}
         onRefetch={() => fetchUserTransactions(userId)}

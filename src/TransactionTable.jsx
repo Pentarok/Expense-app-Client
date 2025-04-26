@@ -31,17 +31,23 @@ console.log(viewportWidth)
 
   return (
 <div
-className={` max-w-[600px] sm:max-w-[640px]    px-2`}
+className={` max-w-full px-2`}
 >
 
       
       {/* Scrollable Table Container */}
       <div className="max-w-full p-2 overflow-x-auto bg-white shadow rounded-md border border-gray-200">
-      <h1 className="text-center md:text-2xl font-bold mb-2">Payment Transactions</h1>
-<button className='bg-blue-500 hover:bg-blue-600 p-1 text-white rounded-sm static mb-2 cursor-pointer float-right' onClick={onRefetch}>Refresh</button>
+    
+    <div className='flex flex-col'>
+    <h1 className="text-center md:text-2xl font-bold mb-2">Payment Transactions</h1>
+
 <p className="mb-4 px-2 text-gray-600 text-sm text-center md:text-left">
   Transactions marked as <span className="font-semibold">pending</span> may include those that were cancelled by the user.
 </p>
+
+<button className='bg-blue-500 hover:bg-blue-600 p-1 inline text-white rounded-sm static mb-2 cursor-pointer float-right max-w-[180px]' onClick={onRefetch}>Refresh</button>
+    </div>
+     
 
         <div className="inline-block min-w-full">
           <table className="min-w-[750px] w-full text-sm text-left">

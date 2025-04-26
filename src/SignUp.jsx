@@ -58,7 +58,7 @@ const navigate = useNavigate();
 
     }
   return (
-    <div className='w-full flex justify-center items-center mt-2'>
+    <div className='w-full p-2 flex justify-center items-center mt-2'>
 <div className="flex flex-col rounded-xl shadow  bg-slate-200 w-[400px] max-w-[400px] p-2">
 <h4 className='text-center text-dark text-xl font-bold'>Sign Up</h4>
 {message && <div className={message.includes('Ok')?"":'error'}>{message}</div>}
@@ -68,21 +68,21 @@ const navigate = useNavigate();
     <div>
             <label htmlFor="" className=' text-black'>Username:</label>
            <div>
-           <input type="text" value={username} className='w-full border p-1 border-black rounded-xl text-black' onChange={(e)=>setUserName(e.target.value)} required/>
+           <input type="text" value={username} className='w-full border p-2 md:p-1 border-black rounded-xl text-black' onChange={(e)=>setUserName(e.target.value)} required/>
             </div>
         </div>
 
         <div>
             <label htmlFor="" className=' text-black'>Email:</label>
            <div>
-           <input type="email" value={email} className='w-full border p-1 border-black rounded-xl text-black' onChange={(e)=>setEmail(e.target.value)} required/>
+           <input type="email" value={email} className='w-full border p-2 md:p-1 border-black rounded-xl text-black' onChange={(e)=>setEmail(e.target.value)} required/>
             </div>
         </div>
 
         <div>
             <label htmlFor="" className=' text-black'>Password:</label>
             <div className=' relative'>
-            <input  type={isVisible?"text":"password"} className='w-full p-1 border border-black rounded-xl text-black' value={password} onChange={(e)=>setPassword(e.target.value)} required/>
+            <input  type={isVisible?"text":"password"} className='w-full p-2 md:p-1 border border-black rounded-xl text-black' value={password} onChange={(e)=>setPassword(e.target.value)} required/>
            
             <div className="absolute right-2 bottom-1" onClick={togglePasswordVisibility}>
             <FontAwesomeIcon  icon={isVisible?faEye: faEyeSlash} color='black' className='cursor-pointer'/>

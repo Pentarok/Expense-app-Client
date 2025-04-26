@@ -85,101 +85,123 @@ const ResetExpenseLimit = async ()=>{
     console.log(data)
   },[isLoading])
   return (
-    <div className='bg-indigo-100 p-2 rounded-xl'>
+    <div className='bg-indigo-100 p-2 rounded-xl w-full max-w-full overflow-x-hidden'>
 
-<div className="bg-blue-50 p-3 rounded-md border border-blue-200 mb-4">
-  <h2 className="text-blue-600 font-semibold text-lg mb-1">Set Your Financial Limits</h2>
-  <p className="text-sm text-gray-700">
-    Here you can set your <span className="font-medium">expense</span> and <span className="font-medium">balance</span> caps. 
-    You’ll receive an <span className="font-medium">email alert</span> if you exceed your limits.
-  </p>
-<AccordionCaps/>
-</div>
-
-{data &&  data.Limits.balanceCap!==null && data.Limits.balance < data.Limits.balanceCap && 
-  <div className='flex flex-col justify-center items-center bg-white shadow rounded-sm p-1 mb-1'>
-  <span className='text-red-600 text-xl font-semibold'>
-    ❗❗ Your Balance Cap Has Been Exceeded!
-  </span>
-</div>
-}
-{data &&  data.Limits.expenseCap!==null && data.Limits.totalExpenses  > data.Limits.expenseCap && 
-  <div className='flex flex-col justify-center items-center bg-white shadow rounded-sm p-1 mb-1'>
-  <span className='text-red-600 text-xl font-semibold'>
-    ❗❗ Your Expense Cap Has Been Exceeded!
-  </span>
-</div>
-}
-
-
-
-<div className='flex w-full justify-center items-center'>
-
-
-<div className='max-w-[500px] bg-indigo-50 p-2 rounded-sm '>
-
-
-      <div className='flex flex-col justify-center items-center bg-white shadow rounded-sm p-1 mb-1'>
-      {data && (data.Limits.balanceCap === null) ? (
-  <span>You have no balance cap</span>
-) : (
-  <>
-    <span className='font-bold'>Current Balance Cap:</span>   
-    <div className='flex items-center justify-center'>
-      <span className="text-lg sm:text-xl md:text-2xl text-green-500">{currencySymbol}</span>
-      <span className='text-green-500 text-lg sm:text-xl md:text-2xl'>
-        {data ? data.Limits.balanceCap : "0"}
-      </span>
-    </div>
-  </>
-)}
-
-      
+      <div className="bg-blue-50 p-3 rounded-md border border-blue-200 mb-4">
+        <h2 className="text-blue-600 font-semibold text-lg mb-1">Set Your Financial Limits</h2>
+        <p className="text-sm text-gray-700">
+          Here you can set your <span className="font-medium">expense</span> and <span className="font-medium">balance</span> caps. 
+          You’ll receive an <span className="font-medium">email alert</span> if you exceed your limits.
+        </p>
+        <AccordionCaps/>
       </div>
-    {data && data.Limits.balanceCap!==null && 
-    <button onClick={ResetBalanceLimit} className='bg-orange-600 p-1 d-block w-full rounded-sm text-white hover:bg-orange-500 cursor-pointer'>Reset</button>}
-
-        <form action="
-        " onSubmit={handleSetBalance}>
-             <div className='flex flex-col '>
-            <h1 className='font-bold pt-2'>Set a balance cap</h1>
-             <input type="number" className='p-1 mb-1 border border-indigo-400 outline-indigo-400 rounded-sm' onChange={(e)=>setBalance(e.target.value)} value={balance} placeholder='Enter amount' min={1} required/>
-
-<button type='submit' className='bg-indigo-600 p-1 rounded-sm text-white hover:bg-indigo-500 cursor-pointer'>{loadingBal?"Loading...":"Submit"}</button>
+  
+      {data && data.Limits.balanceCap !== null && data.Limits.balance < data.Limits.balanceCap && 
+        <div className='flex flex-col justify-center items-center bg-white shadow rounded-sm p-1 mb-1'>
+          <span className='text-red-600 text-center text-xl font-semibold'>
+            ❗❗ Your Balance Cap Has Been Exceeded!
+          </span>
         </div>
-        <hr  className='mt-2 border-t-2 border-red-400'/>
-
-        </form>
-        <div className='flex flex-col justify-center items-center  bg-white shadow rounded-sm p-1 mt-2 mb-1'>
-
-          {data && (data.Limits.expenseCap===null ) ?(
-            <span>You have no expense cap</span>
-          ):(
-            <>
-<span className='text-red-500 font-bold'>Current Expense Cap:</span> 
- <div className='flex items-center justify-center'>
- <span  className="text-lg sm:text-xl md:text-2xl text-red-500"   >{currencySymbol}</span>
- <span className='text-red-500 text-lg sm:text-xl md:text-2xl'>{data? data.Limits.expenseCap:"0"}</span>
- </div>
- </>
-          )}
-
-</div>
-{data && data.Limits.expenseCap!==null && 
-  <button onClick={ResetExpenseLimit} className='bg-orange-600 p-1 d-block w-full rounded-sm text-white hover:bg-orange-500 cursor-pointer'>Reset</button>     }
-
-       <form action="
-       " onSubmit={handleSetExpense}>
-         <div className='flex flex-col'>
-            <h1 className='font-bold pt-2'>Set an expense cap</h1>
-            <input type="number" className='p-1 mb-1 border border-indigo-400 outline-indigo-400 rounded-sm' onChange={(e)=>setExpense(e.target.value)} value={expense}  placeholder='Enter amount' min={1} required/>
-            <button type='submit' className='bg-indigo-600 p-1 rounded-sm text-white hover:bg-indigo-500 cursor-pointer'>{loadingexp?"Loading...":"Submit"}</button>
+      }
+  
+      {data && data.Limits.expenseCap !== null && data.Limits.totalExpenses > data.Limits.expenseCap && 
+        <div className='flex flex-col justify-center items-center bg-white shadow rounded-sm p-1 mb-1'>
+          <span className='text-red-600 text-center text-xl font-semibold'>
+            ❗❗ Your Expense Cap Has Been Exceeded!
+          </span>
         </div>
-        
-       </form>
-       
-    </div>
-    </div>
+      }
+  
+      <div className='flex flex-col sm:flex-row sm:justify-center sm:items-start gap-4 w-full'>
+        <div className='w-full max-w-[500px] bg-indigo-50 p-3 rounded-sm mx-auto'>
+  
+          <div className='flex flex-col justify-center items-center bg-white shadow rounded-sm p-1 mb-2'>
+            {data && (data.Limits.balanceCap === null) ? (
+              <span className="text-center">You have no balance cap</span>
+            ) : (
+              <>
+                <span className='font-bold text-center'>Current Balance Cap:</span>   
+                <div className='flex items-center justify-center'>
+                  <span className="text-lg sm:text-xl md:text-2xl text-green-500">{currencySymbol}</span>
+                  <span className='text-green-500 text-lg sm:text-xl md:text-2xl'>{data?.Limits.balanceCap ?? "0"}</span>
+                </div>
+              </>
+            )}
+          </div>
+  
+          {data?.Limits.balanceCap !== null && 
+            <button 
+              onClick={ResetBalanceLimit} 
+              className='bg-orange-600 p-1 w-full rounded-sm text-white hover:bg-orange-500'>
+              Reset
+            </button>
+          }
+  
+          <form onSubmit={handleSetBalance}>
+            <div className='flex flex-col mt-2'>
+              <h1 className='font-bold pt-2'>Set a balance cap</h1>
+              <input 
+                type="number" 
+                className='p-1 mb-1 border border-indigo-400 outline-indigo-400 rounded-sm' 
+                onChange={(e)=>setBalance(e.target.value)} 
+                value={balance} 
+                placeholder='Enter amount' 
+                min={1} 
+                required 
+              />
+              <button 
+                type='submit' 
+                className='bg-indigo-600 p-1 rounded-sm text-white hover:bg-indigo-500'>
+                {loadingBal ? "Loading..." : "Submit"}
+              </button>
+            </div>
+          </form>
+  
+          <hr className='mt-4 border-t-2 border-red-400'/>
+  
+          <div className='flex flex-col justify-center items-center bg-white shadow rounded-sm p-1 mt-4 mb-2'>
+            {data?.Limits.expenseCap === null ? (
+              <span className="text-center">You have no expense cap</span>
+            ) : (
+              <>
+                <span className='text-red-500 font-bold text-center'>Current Expense Cap:</span> 
+                <div className='flex items-center justify-center'>
+                  <span className="text-lg sm:text-xl md:text-2xl text-red-500">{currencySymbol}</span>
+                  <span className='text-red-500 text-lg sm:text-xl md:text-2xl'>{data?.Limits.expenseCap ?? "0"}</span>
+                </div>
+              </>
+            )}
+          </div>
+  
+          {data?.Limits.expenseCap !== null && 
+            <button 
+              onClick={ResetExpenseLimit} 
+              className='bg-orange-600 p-1 w-full rounded-sm text-white hover:bg-orange-500'>
+              Reset
+            </button>
+          }
+  
+          <form onSubmit={handleSetExpense}>
+            <div className='flex flex-col mt-2'>
+              <h1 className='font-bold pt-2'>Set an expense cap</h1>
+              <input 
+                type="number" 
+                className='p-1 mb-1 border border-indigo-400 outline-indigo-400 rounded-sm' 
+                onChange={(e)=>setExpense(e.target.value)} 
+                value={expense} 
+                placeholder='Enter amount' 
+                min={1} 
+                required 
+              />
+              <button 
+                type='submit' 
+                className='bg-indigo-600 p-1 rounded-sm text-white hover:bg-indigo-500'>
+                {loadingexp ? "Loading..." : "Submit"}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   )
 }
