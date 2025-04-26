@@ -34,6 +34,7 @@ const AppWrappe = () => {
     const {isSuspended,loading,user}=useAuth();
     const navigate = useNavigate();
     const isMd= useIsMediumScreen();
+    const serverUri = import.meta.env.VITE_BACKEND_URL;
 const localCurrency = localStorage.getItem('currency')
     useEffect(() => {
         const storedCurrency = localStorage.getItem("currency") || "USD"; // Default to USD
@@ -43,7 +44,7 @@ const localCurrency = localStorage.getItem('currency')
    
 
     const fetchSavings = async () => {
-        const res = await axios.get(`http://localhost:5000/api/v1/get-savings/${userId}`);
+        const res = await axios.get(`${serverUri}/get-savings/${userId}`);
         return res.data;
     };
     const { data: dataSavings, isLoading: isLoadingSavings } = useQuery({
@@ -53,7 +54,7 @@ const localCurrency = localStorage.getItem('currency')
 
 
     const fetchIncomes = async () => {
-        const res = await axios.get(`http://localhost:5000/api/v1/get-incomes/${userId}`);
+        const res = await axios.get(`${serverUri}/get-incomes/${userId}`);
         return res.data;
     };
    
@@ -64,7 +65,7 @@ const localCurrency = localStorage.getItem('currency')
 
     // Fetch expenses
     const fetchExpenses = async () => {
-        const res = await axios.get(`http://localhost:5000/api/v1/get-expenses/${userId}`);
+        const res = await axios.get(`${serverUri}/get-expenses/${userId}`);
         return res.data;
     };
 
