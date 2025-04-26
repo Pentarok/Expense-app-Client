@@ -14,6 +14,7 @@ const IncomeList = ({amount,info,title,id,date}) => {
   const {tab}=globalData;
   const [BaseUrl,setBaseUrl]=useState("");
   const queryClient = useQueryClient()
+  const [deleteLoad,setDeleteLoad]=useState(false);
 const serverUri = import.meta.env.VITE_BACKEND_URL;
   useEffect(()=>{
 if(tab == 3){
@@ -24,20 +25,24 @@ if(tab == 3){
   },[tab])
   const handleDelete = async(itemId)=>{
     try {
-      
+      setDeleteLoad(true);
       const res = await axios.delete(`${BaseUrl}/${itemId}`);
       if (res.data.status == "Ok"){
+        setDeleteLoad(false);
         if(tab == 3){
           queryClient.invalidateQueries(['incomes']);
+          
         }else if(tab === 4){
           queryClient.invalidateQueries(['savings']);
         }
         
         toast.success(res.data.message);
       }else{
+        setDeleteLoad(false);
         toast.error(res.data.message)
       }
     } catch (error) {
+      setDeleteLoad(false);
       console.log(error)
     }
 }
@@ -76,7 +81,11 @@ const {currencySymbol}=globalData;
   </div>
   <div className=''>
          {/* delete icon */}
-         <FontAwesomeIcon icon={faTrash} className="text-white text-[10px] sm:text-sm cursor-pointer hover:bg-red-500 bg-black px-2 py-2 rounded-full " onClick={()=>handleDelete(id)}/>
+         {deleteLoad?
+                 "Loading..."
+                  : <FontAwesomeIcon icon={faTrash} className="text-white text-[10px] sm:text-sm cursor-pointer hover:bg-red-500 bg-black px-2 py-2 rounded-full " onClick={()=>handleDelete(id)}/>
+         }
+
        </div>
 </div>
   )

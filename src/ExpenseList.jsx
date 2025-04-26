@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash} from "@fortawesome/free-solid-svg-icons";
 import {  faDollarSign, faCalendar,faCircle, faComment, faMessage } from '@fortawesome/free-solid-svg-icons';
@@ -13,16 +13,22 @@ const ExpenseList = ({amount,info,title,date,id}) => {
 
   const serverUri = import.meta.env.VITE_BACKEND_URL;
 const queryClient = useQueryClient()
+const [deleteLoad,setDeleteLoad]=useState(false);
   const handleDelete = async(itemId)=>{
     try {
+      setDeleteLoad(true);
       const res = await axios.delete(`${serverUri}/delete-expense/${itemId}`);
       if (res.data.status == "Ok"){
+        setDeleteLoad(false)
         queryClient.invalidateQueries(['expenses']);
         toast.success(res.data.message);
       }else{
+        setDeleteLoad(false)
         toast.error(res.data.message)
+      
       }
     } catch (error) {
+      setDeleteLoad(false);
       console.log(error)
     }
 
@@ -62,7 +68,11 @@ const queryClient = useQueryClient()
   </div>
   <div className=''>
          {/* delete icon */}
+         {deleteLoad ?
+         "Loading..":
          <FontAwesomeIcon icon={faTrash} className="text-white text-[10px] sm:text-sm cursor-pointer hover:bg-red-500 bg-black px-2 py-2 rounded-full  " onClick={()=>handleDelete(id)} />
+         }
+
        </div>
 </div>
   )
