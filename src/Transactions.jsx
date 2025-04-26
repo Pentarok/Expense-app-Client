@@ -122,7 +122,7 @@ const Transactions = ({ incomeAmount, cashFigures, history, result }) => {
                 </div>
               ))
             ) : (
-              <div className="text-center text-gray-600">No recent history available.</div>
+              <div className="text-center text-white">No recent history available.</div>
             )}
           </div>
         </div>

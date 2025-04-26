@@ -23,7 +23,7 @@ export const TabContext = createContext();
 
 const AppWrappe = () => {
     const oldTab = JSON.parse(localStorage.getItem("openTab"));
-    const [tab, setOpenTab] = useState(oldTab);
+    const [tab, setOpenTab] = useState(oldTab || 1);
     const [isExpense, setIsExpense] = useState(false);
     const [recentHistory, setRecentHistory] = useState([]);
     const [globalData, setGlobalData] = useState({});

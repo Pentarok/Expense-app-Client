@@ -49,7 +49,7 @@ const Income = ({incomes,getTotalIncome}) => {
             </div>
                 <div className='basis-2/3 '>
                 {/*   List incomes */}
-                {incomes.length==0 && <div className='bg-slate-200 shadow rouded-xl text-gray-800 p-2'>
+                {incomes.length==0 && <div className='bg-slate-50 mt-1 shadow rouded-xl text-gray-800  text-center p-2'>
                   No data found!
                 </div>
                 }

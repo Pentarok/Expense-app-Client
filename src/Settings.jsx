@@ -4,6 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import ConfirmPassword from './ConfirmPassword';
+import { CirclesWithBar } from 'react-loader-spinner';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { TabContext } from './AppWrappe';
 
@@ -15,6 +16,7 @@ const Settings = ({onRemount,globalData,setGlobalData}) => {
   const [password, setPassword] = useState('');
   const [dBoxOpen, setdBoxOpen] = useState(null);
   const [currency, setCurrency] = useState('');
+  const [loadFetch,setLoadFetch]=useState(false);
   const navigate = useNavigate();
   const [reqLoading,setReqLoading]=useState(false);
   const queryClient = useQueryClient();
@@ -27,14 +29,16 @@ const Settings = ({onRemount,globalData,setGlobalData}) => {
   }, [id]);
 
   const fetchUserData = async (UserId) => {
+    setLoadFetch(true);
     const res = await axios.get(`${serverUri}/userdata/${UserId}`, {
       withCredentials: true,
     });
-    console.log(res)
+  
     if (res) {
       setUserName(res.data.userData.username );
       setEmail(res.data.userData.email);
       setCurrency(res.data.userData.currency);
+      setLoadFetch(false);
     }
   };
 
@@ -124,6 +128,22 @@ const Settings = ({onRemount,globalData,setGlobalData}) => {
     }
   };
 
+  if(loadFetch){
+    return <div className='bg-slate-50 flex justify-center items-center h-full w-full fixed bottom-0'>
+    <CirclesWithBar
+      height="80"
+      width="80"
+      color="#4fa94d"
+      outerCircleColor="#0000ff"
+      innerCircleColor="#000000"
+      barColor="#0000ff"
+      ariaLabel="circles-with-bar-loading"
+      wrapperStyle={{}}
+      wrapperClass=""
+      visible={true}
+      />
+        </div>
+  }
   return (
     <div className='bg-slate-200 p-2 w-full md:w-[600px] rounded-sm'>
       <div className='flex flex-col'>

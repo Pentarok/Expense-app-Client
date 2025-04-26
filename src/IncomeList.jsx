@@ -28,14 +28,14 @@ if(tab == 3){
       setDeleteLoad(true);
       const res = await axios.delete(`${BaseUrl}/${itemId}`);
       if (res.data.status == "Ok"){
-        setDeleteLoad(false);
+       
         if(tab == 3){
           queryClient.invalidateQueries(['incomes']);
           
         }else if(tab === 4){
           queryClient.invalidateQueries(['savings']);
         }
-        
+        setDeleteLoad(false);
         toast.success(res.data.message);
       }else{
         setDeleteLoad(false);

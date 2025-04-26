@@ -19,8 +19,9 @@ const [deleteLoad,setDeleteLoad]=useState(false);
       setDeleteLoad(true);
       const res = await axios.delete(`${serverUri}/delete-expense/${itemId}`);
       if (res.data.status == "Ok"){
-        setDeleteLoad(false)
+       
         queryClient.invalidateQueries(['expenses']);
+        setDeleteLoad(false)
         toast.success(res.data.message);
       }else{
         setDeleteLoad(false)

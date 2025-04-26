@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserCircle, faDollarSign, faMinusCircle, faPlusCircle, faTachometerAlt, faListAlt, faTimes, faCog, faCreditCard } from '@fortawesome/free-solid-svg-icons';
+import { faUserCircle, faDollarSign, faMinusCircle,faPiggyBank, faPlusCircle, faTachometerAlt, faListAlt, faTimes, faCog, faCreditCard } from '@fortawesome/free-solid-svg-icons';
 import useIsMediumScreen from './mediumScreen';
 import { menuContext } from './HomeLayout';
 
@@ -99,11 +99,11 @@ const ChildNav = ({ tab, setOpenTab, isExpense, setIsExpense, setMenuOpen, menuO
         <FontAwesomeIcon icon={faUserCircle} size="2x" color="black" />
         <h1 className="md:text-lg font-semibold text-slate-800">{userData.username}</h1>
       </div>
-
+{/* 
       <div className="pt-2.5 flex gap-1 items-center cursor-pointer rounded-sm pl-1 hover:bg-white">
         <FontAwesomeIcon icon={faTachometerAlt} size="1x" color="black" />
         <span className="text-sm md:text-base">Dashboard</span>
-      </div>
+      </div> */}
 
       <div className="flex gap-1 items-center pt-2 cursor-pointer rounded-sm pl-1 hover:bg-white" onClick={handleTransactionClick}>
         <FontAwesomeIcon icon={faListAlt} size="1x" color="black" />
@@ -126,7 +126,7 @@ const ChildNav = ({ tab, setOpenTab, isExpense, setIsExpense, setMenuOpen, menuO
       </div>
 
       <div className="flex gap-1 items-center pt-2 rounded-sm pl-1 hover:bg-white cursor-pointer" onClick={handleSavingsClick}>
-        <FontAwesomeIcon icon={faMinusCircle} size="1x" color="blue" />
+        <FontAwesomeIcon icon={faPiggyBank} size="1x" color="blue" />
         <span className="text-sm md:text-base cursor-pointer">Savings</span>
       </div>
 
