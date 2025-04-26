@@ -14,12 +14,12 @@ const IncomeList = ({amount,info,title,id,date}) => {
   const {tab}=globalData;
   const [BaseUrl,setBaseUrl]=useState("");
   const queryClient = useQueryClient()
-
+const serverUri = import.meta.env.VITE_BACKEND_URL;
   useEffect(()=>{
 if(tab == 3){
-  setBaseUrl("http://localhost:5000/api/v1/delete-income")
+  setBaseUrl(`${serverUri}/delete-income`)
 }else if(tab == 4){
- setBaseUrl("http://localhost:5000/api/v1/delete-saving")
+ setBaseUrl(`${serverUri}/delete-saving`)
 }
   },[tab])
   const handleDelete = async(itemId)=>{

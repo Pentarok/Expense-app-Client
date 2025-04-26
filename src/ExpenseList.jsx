@@ -10,10 +10,12 @@ import { useContext } from 'react';
 import { TabContext } from './AppWrappe';
 import { format } from 'date-fns';
 const ExpenseList = ({amount,info,title,date,id}) => {
+
+  const serverUri = import.meta.env.VITE_BACKEND_URL;
 const queryClient = useQueryClient()
   const handleDelete = async(itemId)=>{
     try {
-      const res = await axios.delete(`http://localhost:5000/api/v1/delete-expense/${itemId}`);
+      const res = await axios.delete(`${serverUri}/delete-expense/${itemId}`);
       if (res.data.status == "Ok"){
         queryClient.invalidateQueries(['expenses']);
         toast.success(res.data.message);
