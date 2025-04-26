@@ -16,6 +16,7 @@ const Settings = ({onRemount,globalData,setGlobalData}) => {
   const [dBoxOpen, setdBoxOpen] = useState(null);
   const [currency, setCurrency] = useState('');
   const navigate = useNavigate();
+  const [reqLoading,setReqLoading]=useState(false);
   const queryClient = useQueryClient();
   const id = localStorage.getItem('userId');
   const serverUri = import.meta.env.VITE_BACKEND_URL;
@@ -26,7 +27,7 @@ const Settings = ({onRemount,globalData,setGlobalData}) => {
   }, [id]);
 
   const fetchUserData = async (UserId) => {
-    const res = await axios.get(`http://localhost:5000/api/v1/userdata/${UserId}`, {
+    const res = await axios.get(`${serverUri}/userdata/${UserId}`, {
       withCredentials: true,
     });
     console.log(res)
@@ -42,15 +43,18 @@ const Settings = ({onRemount,globalData,setGlobalData}) => {
 
   const handleAccountDeletion = async (e) => {
     e.preventDefault();
-    const Url = 'http://localhost:5000/api/v1/user/delete';
+
+    const Url = `${serverUri}/user/delete`;
     const userId = localStorage.getItem('userId');
 
     try {
+      setReqLoading(true);
       const res = await axios.post(Url, { userId, password }, {
         withCredentials: true,
       });
 
       if (res.data.status === 200) {
+        setReqLoading(false);
         toast.success("Account deleted successfully. Redirecting...");
         const cachedItems = ["currency", "openTab", "userId", "token"];
 
@@ -82,11 +86,12 @@ const Settings = ({onRemount,globalData,setGlobalData}) => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    const Url = 'http://localhost:5000/api/v1/user/update';
+    const Url = `${serverUri}/user/update`;
     const userId = localStorage.getItem('userId');
     let currency;
     currency = localStorage.getItem('currency');
     try {
+      setReqLoading(false);
       const res = await axios.post(Url, { userId, username, email, currency, password }, {
         withCredentials: true,
       });
@@ -102,7 +107,7 @@ const Settings = ({onRemount,globalData,setGlobalData}) => {
       console.log(globalData)
       
       toast.success("Profile updated successfully");
-      
+      setReqLoading(false);
       setTimeout(() => {
         if (onRemount) onRemount();
       }, 3000);
@@ -110,6 +115,7 @@ const Settings = ({onRemount,globalData,setGlobalData}) => {
 
     } catch (error) {
       console.error(error);
+      setReqLoading(false)
       if (error.response) {
         toast.error(error.response.data.message || "Update failed");
       } else {
@@ -171,6 +177,7 @@ const Settings = ({onRemount,globalData,setGlobalData}) => {
           password={password}
           setdBoxOpen={setdBoxOpen}
           action={handleFormSubmit}
+          reqLoading={reqLoading}
           message="Password is required"
         />
       )}
