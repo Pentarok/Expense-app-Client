@@ -7,7 +7,8 @@ import { useQueryClient } from '@tanstack/react-query';
 import { menuContext } from './HomeLayout';
 const TransactionForm = () => {
   const queryClient = useQueryClient();
-  const [Url,setUrl]=useState("http://localhost:5000/api/v1/add-income")
+  const serverUri = import.meta.env.VITE_BACKEND_URL;
+  const [Url,setUrl]=useState(`${serverUri}/add-income`)
   const [title,setTitle]=useState("");
   const [amount,setAmount]=useState("");
   const [date,setDate]=useState("");
@@ -27,11 +28,11 @@ const {userId}=useContext(menuContext);
  useEffect(()=>{
 
   if(tab == 2){
-    setUrl("http://localhost:5000/api/v1/add-expense");
+    setUrl(`${serverUri}/add-expense`);
    }else if(tab == 3){
-     setUrl("http://localhost:5000/api/v1/add-income")
+     setUrl(`${serverUri}/add-income`)
    }else{
-    setUrl("http://localhost:5000/api/v1/add-saving")
+    setUrl(`${serverUri}/add-saving`)
    }
    
  },[tab])
