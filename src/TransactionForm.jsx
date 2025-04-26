@@ -13,9 +13,9 @@ const TransactionForm = () => {
   const [amount,setAmount]=useState("");
   const [date,setDate]=useState("");
   const [description,setDescription]=useState("");
-  
+  const [reqLoading,setReqLoading]=useState(false);
  
-const {userId}=useContext(menuContext);
+  const {userId}=useContext(menuContext);
   const globalData=useContext(TabContext);
   const {tab,isExpense}=globalData;
 
@@ -43,10 +43,12 @@ const {userId}=useContext(menuContext);
   const handleFormSubmit = async (e)=>{
     e.preventDefault();
     try {
+      setReqLoading(true)
       const res =  await axios.post(Url,{title,amount,date,description,userId});
     console.log(res);
     if(res.data.message == "Ok"){
       ClearForm();
+      setReqLoading(false);
       if(tab == 2){
         
         toast.success("Expense added successfully");
@@ -61,13 +63,15 @@ const {userId}=useContext(menuContext);
 
      
     }else{
+      setReqLoading(false);
       toast.error("An error occured!!")
     }
     } catch (error) {
-      
+      setReqLoading(false)
     }
     finally{
       ClearForm();
+      setReqLoading(false)
     }
   }
 useEffect(()=>{
@@ -93,15 +97,22 @@ useEffect(()=>{
             <textarea name="" id="" className='w-full mt-2   bg-white border border-indigo-400 rounded-xl shadow-sm py-1 px-1' value={description} onChange={(e)=>setDescription(e.target.value)}  placeholder='Add reference'></textarea>
           </div>
           <div>
-            <button   className={`${
+            <button  disabled={reqLoading}  className={`${
         tab == 2 ? 'bg-red-700 hover:bg-red-600' : 'bg-green-700 hover:bg-green-600'
       } text-white py-1 px-2 rounded-xl shadow cursor-pointer`}
      >
-           
-              {tab == 2 && "Add Expense"}
-              {tab == 3 && "Add Income"}
-              {tab == 4 && "Add Saving"}
-               
+          {reqLoading ? (
+    "Loading"
+  ) : tab == 2 ? (
+    "Add Expense"
+  ) : tab == 3 ? (
+    "Add Income"
+  ) : tab == 4 ? (
+    "Add Saving"
+  ) : (
+    "Submit"
+  )}
+          
             </button>
           </div>
         </form>
