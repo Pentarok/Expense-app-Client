@@ -66,11 +66,13 @@ setIsVisible(!isVisible);
         setloading1(false);
     
         if (error.response) {
-          console.error('Error response:', error.response);
-          setMessage(error.response.data.message);
+          setMessage('An error occurred. Please try again.');
+         /*  console.error('Error response:', error.response);
+          setMessage(error.response.data.message); */
         } else if (error.request) {
-          console.error('Error request:', error.request);
-          setMessage('No response from the server. Please try again.');
+          setMessage('An error occurred. Please try again.');
+          /* console.error('Error request:', error.request);
+          setMessage('No response from the server. Please try again.'); */
         } else {
           console.error('Error:', error.message);
           setMessage('An error occurred. Please try again.');
@@ -94,7 +96,7 @@ setIsVisible(!isVisible);
 <div className=" ">
 <h4 className='text-center text-black'>Login</h4>
 
-{message &&<div className={message.includes('successful')?'alert success':'alert error'}>
+{message &&<div className={message.includes('successful')?'bg-white shadow-sm rounded-sm p-2 text-green-400':'bg-white shadow-sm p-2 rounded-sm text-red-600'}>
   {message}
 </div> }
     <form action="" onSubmit={handleLogin}>

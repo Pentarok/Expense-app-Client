@@ -1,4 +1,7 @@
 import React from 'react'
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
+import { useNavigate } from 'react-router-dom';
 const features = [
     {
       title: "Effortless Expense Tracking",
@@ -26,21 +29,36 @@ const features = [
       icon: "✅",
     },
   ];
+ 
   
 const HomeIntro = () => {
+const navigate = useNavigate();
+  const getStarted = ()=>{
+    navigate('/register')
+  }
   return (
-    <div className='p-4 rounded-xl shadow bg-white'>
-        <h1 className='md:text-2xl font-bold text-green-600'>Welcome to FinNance – Your Smart Expense Tracker & Financial Companion</h1>
+    <div className='p-4 max-w-full  flex flex-col sm:flex-row  text-white shadow bg-gray-900'>
+      <div className='basis-1/2'>
+      <h1 className='md:text-2xl font-bold text-gray-50'>Welcome to FinNance – Your Smart Expense Tracker & Financial Companion</h1>
 
-        <h2 className='text-xl font-bold text-green-500 md:pt-2' >Why Choose us?</h2>
-     {/*    features */}
-     <ul>
-     {features.map((ft,i)=>
-     <div key={i} className='mb-2'><li className='font-bold mb-0'>{ft.title}</li>
-     <span>-{ft.description}</span></div>)}
-     </ul>
-     <h1 className='text-xl text-green-600 pl-3'>Start Managing Your Money Better Today!</h1>
-   <p>Join thousands of users simplifying their finances. Sign up now and take the first step toward financial freedom!</p>
+      <p className="mt-2 text-white sm:text-xl p-2">
+  Track smarter, spend wiser.<br />
+  Stay on budget effortlessly.<br />
+  Your financial freedom starts here.
+</p>
+ 
+       <button className='bg-green-500 text-white hover:bg-white hover:text-green-500 rounded-sm mt-8 p-2 sm:min-w-[270px] mb-2 font-bold cursor-pointer transition-all duration-300 sm:text-2xl' onClick={getStarted}>Get started</button>
+        </div>  
+
+        <LazyLoadImage
+    alt="finance image"
+    effect="blur"
+    className='rounded-xl max-h-[380px] md:w-[350px] md:min-w-[200px]'
+    wrapperProps={{
+        // If you need to, you can tweak the effect transition using the wrapper style.
+        style: {transitionDelay: "1s"},
+    }}
+    src="https://res.cloudinary.com/dtrskzurx/image/upload/v1745784520/ChatGPT_Image_Apr_27_2025_11_05_57_PM_qrvlht.png" />
     </div>
   )
 }

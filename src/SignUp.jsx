@@ -61,7 +61,7 @@ const navigate = useNavigate();
     <div className='w-full p-2 flex justify-center items-center mt-2'>
 <div className="flex flex-col rounded-xl shadow  bg-slate-200 w-[400px] max-w-[400px] p-2">
 <h4 className='text-center text-dark text-xl font-bold'>Sign Up</h4>
-{message && <div className={message.includes('Ok')?"":'error'}>{message}</div>}
+{message && <div className={message.includes('Ok')?"":'bg-white p-2 shadow-sm rounded-sm text-red-500'}>{message}</div>}
     <form action="" onSubmit={handleFormSubmit}>
 
 

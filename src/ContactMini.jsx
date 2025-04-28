@@ -8,7 +8,7 @@ const ContactMini = () => {
         "+254705678934","+254734567890"
       ]
   return (
-    <div className='bg-black text-white p-2 rounded-xl w-full mt-2'>
+    <div className='bg-black text-white p-2 rounded-xl w-full h-full mt-2'>
 {/*          <h2 className="text-2xl font-bold  pb-2  text-left">Contact Us</h2> */}
               {contacts.map((contact,i)=>
               <div className="flex gap-1  items-center">
@@ -22,7 +22,7 @@ const ContactMini = () => {
 
            <div className="flex gap-1 items-center ">
             <MdEmail />
-            <p>info@gloryvine.co.ke</p>
+            <p>info@FinNance.com</p>
            </div>
     </div>
   )
