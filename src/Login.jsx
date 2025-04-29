@@ -104,13 +104,13 @@ setIsVisible(!isVisible);
         <div>
             <label htmlFor="" className=' text-black'>Email:</label>
            <div>
-           <input type="email" value={email}  className='rounded-xl border w-full border-black p-1 text-black' onChange={(e)=>setEmail(e.target.value)} required/>
+           <input type="email" value={email}  className='rounded-xl border w-full border-black p-2 text-black' onChange={(e)=>setEmail(e.target.value)} required/>
             </div>
         </div>
         <div>
             <label htmlFor="" className=' text-black'>Password:</label>
             <div className='relative'>
-            <input  type={isVisible?"text":"password"} className='text-black rounded-xl border w-full p-1 border-black' value={password} onChange={(e)=>setPassword(e.target.value)} required/>
+            <input  type={isVisible?"text":"password"} className='text-black rounded-xl border w-full p-2 border-black' value={password} onChange={(e)=>setPassword(e.target.value)} required/>
            
             <div className="login-icon absolute right-2 bottom-1" onClick={togglePasswordVisibility}>
             <FontAwesomeIcon  icon={isVisible?faEye: faEyeSlash} className='cursor-pointer' color='black'/>

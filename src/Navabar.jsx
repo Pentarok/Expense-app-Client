@@ -55,7 +55,7 @@ const handleLogout = () => {
       <FontAwesomeIcon
   icon={faBars}
   size="2x"
-  className="text-white ml-2 mt-0.5 active:scale-90 cursor-pointer "
+  className="text-white ml-4 mt-0.5 active:scale-90 cursor-pointer "
   onClick={() => setMenuOpen(!menuOpen)}
 />
 
