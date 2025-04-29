@@ -62,7 +62,7 @@ const handleLogout = () => {
         </button>
       </div>
       <div>
-        <button onClick={handleLogout} className='sm:w-32 w-28 p-1 my-1 mr-2 hover:bg-amber-500 cursor-pointer rounded-xl bg-orange-600 text-white font-semibold'>
+        <button onClick={handleLogout} className='sm:w-32 w-28 p-1 my-1 mr-2 active:scale-90 hover:bg-amber-500 cursor-pointer rounded-xl bg-orange-600 text-white font-semibold'>
           Logout
         </button>
       </div>

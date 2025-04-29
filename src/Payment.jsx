@@ -72,8 +72,8 @@ const Payment = () => {
     }
 const {user,loading}=useAuth()
     return (
-        <div className='flex md:flex-row flex-col w-full justify-center'>
-       {!loading && user.active!==true &&
+        <div className='flex md:flex-row flex-col p-4 max-w-full w-full justify-center'>
+       {!loading && user &&  user.active!==true &&
         <Inactive />
        }
          

@@ -61,10 +61,10 @@ const clearMessage = (time)=>{
   
   return (
     <div className='w-full flex items-center justify-center '>
-    <div className='w-[400px] bg-black rounded-sm m-2 p-2 '>
+    <div className='w-[400px] bg-black rounded-sm m-2 p-2 pb-4 '>
     <div className="">
     {!success &&   <h3 className='text-white text-center'>Enter Email</h3>}
-      {message  && <div className={success?'bg-green-400 text-white':'bg-red-500 text-white'}> <p>{message}</p></div>}
+      {message  && <div className={success?'bg-green-700 p-1 mb-1 text-white':'bg-red-500 p-1 mb-1 text-white'}> <p>{message}</p></div>}
       <form onSubmit={handleSend} >
      {success?null:
      <div> <input
@@ -89,7 +89,7 @@ const clearMessage = (time)=>{
          <div className="btn-wrapper">
 
         
-          <button type="submit" className='bg-orange-400 text-white hover:bg-orange-500 rounded-sm shadow p-1 m-1' disabled={loading} 
+          <button type="submit" className='bg-orange-400 p-2 w-full mr-4 text-white hover:bg-orange-500 rounded-sm shadow ' disabled={loading} 
         >Send</button> </div>}
         
         </div>  

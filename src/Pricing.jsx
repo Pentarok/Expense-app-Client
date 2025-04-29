@@ -10,24 +10,25 @@ const Pricing = () => {
           </p>
   
           {/* Pricing Card */}
-          <div className="bg-gray-800 p-8 rounded-xl shadow-lg inline-block w-full max-w-md">
+          <div className="bg-gray-800 p-8 rounded-xl shadow-lg inline-block max-w-md w-full ">
             <h3 className="text-2xl font-semibold">Premium Plan</h3>
-            <p className="text-4xl font-bold my-4">SH 100<span className="text-xl font-medium">/month</span></p>
+            <p className="sm:text-4xl text-sm font-bold my-4">SH 100<span className="sm:text-xl text-base font-medium">/month</span></p>
             <p className="text-gray-400 mb-6">After 1-month free trial</p>
   
             {/* Features */}
             <ul className="text-left space-y-3">
               <li className="flex items-center"><span className="text-green-400 mr-2">✔</span> Unlimited Expense Tracking</li>
-              <li className="flex items-center"><span className="text-green-400 mr-2">✔</span> AI-Powered Insights</li>
+             {/*  <li className="flex items-center"><span className="text-green-400 mr-2">✔</span> AI-Powered Insights</li> */}
               <li className="flex items-center"><span className="text-green-400 mr-2">✔</span> Smart Budgeting Tools</li>
               <li className="flex items-center"><span className="text-green-400 mr-2">✔</span> Multi-Device Sync</li>
               <li className="flex items-center"><span className="text-green-400 mr-2">✔</span> Secure & Encrypted Data</li>
             </ul>
   
             {/* CTA Button */}
-            <button className="mt-6 bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-lg font-semibold transition">
+
+            {/* <button className="mt-6 bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-lg font-semibold transition">
               Get Started
-            </button>
+            </button> */}
           </div>
   
           {/* Terms */}

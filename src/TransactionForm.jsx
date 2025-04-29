@@ -99,7 +99,7 @@ useEffect(()=>{
           <div>
             <button  disabled={reqLoading}  className={`${
         tab == 2 ? 'bg-red-700 hover:bg-red-600' : 'bg-green-700 hover:bg-green-600'
-      } text-white py-1 px-2 rounded-xl shadow cursor-pointer`}
+      } text-white py-2 w-full md:py-1 px-2 rounded-xl shadow cursor-pointer`}
      >
           {reqLoading ? (
     "Loading"

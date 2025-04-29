@@ -45,7 +45,13 @@ className={` max-w-full px-2`}
   Transactions marked as <span className="font-semibold">pending</span> may include those that were cancelled by the user.
 </p>
 
-<button className='bg-blue-500 hover:bg-blue-600 p-1 inline text-white rounded-sm static mb-2 cursor-pointer float-right max-w-[180px]' onClick={onRefetch}>Refresh</button>
+<button
+  className="bg-blue-500 hover:bg-blue-600 active:bg-blue-700 active:scale-95 transition transform p-1 inline text-white rounded-sm static mb-2 cursor-pointer float-right max-w-[180px]"
+  onClick={onRefetch}
+>
+  Refresh
+</button>
+
     </div>
      
 

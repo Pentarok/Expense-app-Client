@@ -40,13 +40,13 @@ function HomeNavbar() {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           {/* Logo */}
-          <div className="w-[60px] h-[60px]">
+          {/* <div className="w-[60px] h-[60px]">
             <img
               src="https://res.cloudinary.com/dtrskzurx/image/upload/v1738426457/church-logo_utmuv8.jpg"
               className="rounded-xl"
               alt="Logo"
             />
-          </div>
+          </div> */}
 
           {/* Mobile Menu */}
           <Box sx={{ display: { xs: "flex", md: "none" }, ml: "auto" }}>

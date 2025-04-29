@@ -199,7 +199,7 @@ const remountSettings = () => {
 
 
 useEffect(() => {
-    if (!loading && !user?.active === true) {
+    if (!loading && user && user?.active === false) {
       navigate('/finance/payment');
     }
   }, [loading, user, navigate]);
@@ -221,7 +221,6 @@ useEffect(() => {
     }
  
    
-    
     return (
       <div className='pt-15 px-1'>
 
@@ -231,7 +230,7 @@ useEffect(() => {
 
 
             <TabContext.Provider value={globalData}>
-     {isMd &&     <ChildNav tab={tab} setOpenTab={setOpenTab}  SetMenuOpen={setMenuOpen} menuOpen={menuOpen} isExpense={isExpense} setIsExpense={setIsExpense} /> }
+     {isMd &&     <ChildNav  tab={tab} setOpenTab={setOpenTab}  SetMenuOpen={setMenuOpen} menuOpen={menuOpen} isExpense={isExpense} setIsExpense={setIsExpense} /> }
        {!isMd && menuOpen && <div className='basis-2'>    <ChildNav tab={tab} setOpenTab={setOpenTab}  setMenuOpen={setMenuOpen} menuOpen={menuOpen} isExpense={isExpense} setIsExpense={setIsExpense} /></div>}   
                 {tab === 3 && (isLoadingIncomes ? <p>Loading...</p> : <Income incomes={dataIncomes} getTotalIncome={getTotalIncome} />)}
                 {tab === 4 && (isLoadingSavings ? <p>Loading...</p> : <Savings savings={dataSavings} getTotalSavings={getTotalSavings} />)}

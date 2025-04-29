@@ -83,7 +83,7 @@ const {currencySymbol}=globalData;
          {/* delete icon */}
          {deleteLoad?
                  "Loading..."
-                  : <FontAwesomeIcon icon={faTrash} className="text-white text-[10px] sm:text-sm cursor-pointer hover:bg-red-500 bg-black px-2 py-2 rounded-full " onClick={()=>handleDelete(id)}/>
+                  : <FontAwesomeIcon icon={faTrash} className="text-white text-[20px] mr-2 md:text-[10px] sm:text-sm cursor-pointer hover:bg-red-500 bg-black px-2 py-2 rounded-full " onClick={()=>handleDelete(id)}/>
          }
 
        </div>

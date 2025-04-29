@@ -23,6 +23,17 @@ const CurrencySelector = ({ currency, setCurrency }) => {
     symbol: currencySymbolMap(code) || code,
   }));
 
+  // Sort currencies by country name (name)
+  const sortedCurrencies = currencies.sort((a, b) => {
+    if (a.name < b.name) {
+      return -1;
+    }
+    if (a.name > b.name) {
+      return 1;
+    }
+    return 0;
+  });
+
   return (
     <div className='w-full mb-2'>
       <label htmlFor="currency" className="block font-medium mb-2">
@@ -34,16 +45,12 @@ const CurrencySelector = ({ currency, setCurrency }) => {
         onChange={handleCurrencyChange}
         className="border w-full border-blue-400 block outline-blue-400 outline:border-2 rounded-lg p-2"
       >
-        {currencies.map(({ code, name, symbol }) => (
+        {sortedCurrencies.map(({ code, name, symbol }) => (
           <option key={code} value={code}>
             {name} ({symbol})
           </option>
         ))}
       </select>
-
-      {/* <p className="mt-2">
-        Current Currency: <strong>{selectedCurrency}</strong>
-      </p> */}
     </div>
   );
 };
