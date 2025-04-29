@@ -66,12 +66,13 @@ setIsVisible(!isVisible);
         setloading1(false);
     
         if (error.response) {
-          setMessage('An error occurred. Please try again.');
-         /*  console.error('Error response:', error.response);
-          setMessage(error.response.data.message); */
+          
+       
+          setMessage(error.response.data.message); 
         } else if (error.request) {
           setMessage('An error occurred. Please try again.');
           /* console.error('Error request:', error.request);
+          
           setMessage('No response from the server. Please try again.'); */
         } else {
           console.error('Error:', error.message);

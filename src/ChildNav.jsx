@@ -94,7 +94,7 @@ const ChildNav = ({ tab, setOpenTab, isExpense, setIsExpense, setMenuOpen, menuO
         <FontAwesomeIcon
           icon={faTimes}
           size="2x"
-          className="text-black ml-2 float-right cursor-pointer"
+          className="text-black mr-2 hover:text-indigo-600 float-right cursor-pointer"
           onClick={() => setMenuOpen(false)}
         />
       )}
@@ -109,33 +109,33 @@ const ChildNav = ({ tab, setOpenTab, isExpense, setIsExpense, setMenuOpen, menuO
         <span className="text-sm md:text-base">Dashboard</span>
       </div> */}
 
-      <div className="flex gap-1 items-center pt-2 mb-1 md:mb-0 cursor-pointer rounded-sm pl-1 hover:bg-white" onClick={handleTransactionClick}>
+      <div className="flex gap-1 items-center pt-2 mb-4 md:mb-0 cursor-pointer rounded-sm pl-1 hover:bg-white" onClick={handleTransactionClick}>
         <FontAwesomeIcon icon={faListAlt} size="1x" color="black" />
         <span className="text-sm md:text-base">View Transactions</span>
       </div>
 
-      <div className="flex gap-1 items-center pt-2 mb-1 md:mb-0 rounded-sm pl-1 hover:bg-white cursor-pointer" onClick={handleExpenseClick}>
+      <div className="flex gap-1 items-center pt-2 mb-4 md:mb-0 rounded-sm pl-1 hover:bg-white cursor-pointer" onClick={handleExpenseClick}>
         <FontAwesomeIcon icon={faMinusCircle} size="1x" color="red" />
         <span className="text-sm md:text-base cursor-pointer">Expenses</span>
       </div>
 
-      <div className="flex gap-1 items-center pt-2 mb-1 md:mb-0  rounded-sm pl-1 hover:bg-white cursor-pointer" onClick={handleIncomeClick}>
+      <div className="flex gap-1 items-center pt-2 mb-4 md:mb-0  rounded-sm pl-1 hover:bg-white cursor-pointer" onClick={handleIncomeClick}>
         <FontAwesomeIcon icon={faPlusCircle} size="1x" color="green" />
         <span className="text-sm md:text-base cursor-pointer">Income</span>
       </div>
 
-      <div className="flex gap-1 items-center pt-2 mb-1 md:mb-0 rounded-sm pl-1 hover:bg-white cursor-pointer" onClick={handleCapsClick}>
+      <div className="flex gap-1 items-center pt-2 mb-4 md:mb-0 rounded-sm pl-1 hover:bg-white cursor-pointer" onClick={handleCapsClick}>
         <FontAwesomeIcon icon={faCreditCard} size="1x" color="green" />
         <span className="text-sm md:text-base cursor-pointer">Caps</span>
       </div>
 
-      <div className="flex gap-1 items-center pt-2 mb-1 md:mb-0 rounded-sm pl-1 hover:bg-white cursor-pointer" onClick={handleSavingsClick}>
+      <div className="flex gap-1 items-center pt-2 mb-4 md:mb-0 rounded-sm pl-1 hover:bg-white cursor-pointer" onClick={handleSavingsClick}>
         <FontAwesomeIcon icon={faPiggyBank} size="1x" color="blue" />
         <span className="text-sm md:text-base cursor-pointer">Savings</span>
       </div>
 
       {/* Settings Icon */}
-      <div className="flex gap-1 items-center pt-2 mb-1 md:mb-0 rounded-sm pl-1 hover:bg-white cursor-pointer" onClick={handleSettingClick}>
+      <div className="flex gap-1 items-center pt-2 mb-4 md:mb-0 rounded-sm pl-1 hover:bg-white cursor-pointer" onClick={handleSettingClick}>
         <FontAwesomeIcon icon={faCog} size="1x" color="black" />
         <span className="text-sm md:text-base cursor-pointer">Settings</span>
       </div>
