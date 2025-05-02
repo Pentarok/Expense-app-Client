@@ -127,8 +127,8 @@ const {user,loading}=useAuth()
                         If you have another payment method or are unable to pay with Mpesa, please contact our support team for assistance.
                     </p>
                     <p className='text-sm'>
-                        <strong>Support Phone:</strong> +254 712 345 678<br />
-                        <strong>Email:</strong> support@example.com
+                        <strong>Support Phone:</strong> +254 742 171 443<br />
+                        <strong>Email:</strong> support@FinNance.com
                     </p>
                 </div>
             </div>
