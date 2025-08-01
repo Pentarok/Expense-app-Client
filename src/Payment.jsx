@@ -1,5 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
-// ...other imports
+import React, { useEffect, useState } from 'react'
+import axios from 'axios';
+import useAuth from './Auth';
+import Inactive from './Inactive';
 
 const Payment = () => {
     const [phonNumber, setPhonNumber] = useState('');
@@ -9,25 +11,34 @@ const Payment = () => {
     const [loading2, setLoading] = useState(false);
     const serverUrl = import.meta.env.VITE_BACKEND_URL;
 
-    const formRef = useRef(null); // 🔹 Reference to the form
+    const { user, loading } = useAuth();
 
     useEffect(() => {
         setUserId(localStorage.getItem('userId'));
-
-        const interval = setInterval(() => {
-            if (formRef.current) {
-                formRef.current.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
-            }
-        }, 60000); // 60,000ms = 1 minute
-
-        return () => clearInterval(interval); // 🔹 Cleanup on unmount
     }, []);
 
-    const isValidKenyanPhone = (number) => /^(07|01)\d{8}$/.test(number);
-    const formatToInternational = (number) => `254${number.slice(1)}`;
+    // Auto-submit every 1 minute
+    useEffect(() => {
+        const interval = setInterval(() => {
+            if (phonNumber && isValidKenyanPhone(phonNumber)) {
+                handleFormSubmit(); // no event passed
+            }
+        }, 60000); // 60000 ms = 1 minute
+
+        return () => clearInterval(interval); // clean up on unmount
+    }, [phonNumber, userId]);
+
+    const isValidKenyanPhone = (number) => {
+        const regex = /^(07|01)\d{8}$/;
+        return regex.test(number);
+    }
+
+    const formatToInternational = (number) => {
+        return `254${number.slice(1)}`;
+    }
 
     const handleFormSubmit = async (e) => {
-        e.preventDefault();
+        if (e) e.preventDefault();
 
         if (!isValidKenyanPhone(phonNumber)) {
             setError('Please enter a valid Kenyan phone number (starting with 07 or 01 and 10 digits long).');
@@ -46,10 +57,11 @@ const Payment = () => {
                 phonNumber: formattedNumber,
                 userId
             });
-            setLoading(false);
 
-            const responseCode = res.data.stkResponse.ResponseCode;
-            if (responseCode == 0) {
+            setLoading(false);
+            const responseCode = res?.data?.stkResponse?.ResponseCode;
+
+            if (responseCode === 0) {
                 setSuccess('Request submitted successfully. Check your phone to complete the transaction.');
                 setPhonNumber('');
                 setTimeout(() => setSuccess(''), 5000);
@@ -59,12 +71,10 @@ const Payment = () => {
             }
         } catch (err) {
             setLoading(false);
-            setError('An error occurred!!');
+            setError('An error occurred!');
             setTimeout(() => setError(''), 5000);
         }
     }
-
-    const { user, loading } = useAuth();
 
     return (
         <div className='flex md:flex-row flex-col p-4 max-w-full w-full justify-center'>
@@ -73,10 +83,14 @@ const Payment = () => {
             <div className='bg-gray-100 p-2 flex flex-col w-full md:max-w-[400px] rounded-xl m-2'>
                 <h1 className='text-center'>Pay with Mpesa</h1>
 
-                {success && <p className='bg-green-400 m-1 p-2 rounded text-white text-sm text-center'>{success}</p>}
-                {error && <p className='bg-red-500 m-1 p-2 rounded text-white text-sm text-center'>{error}</p>}
+                {success && (
+                    <p className='bg-green-400 m-1 p-2 rounded text-white text-sm text-center'>{success}</p>
+                )}
+                {error && (
+                    <p className='bg-red-500 m-1 p-2 rounded text-white text-sm text-center'>{error}</p>
+                )}
 
-                <form onSubmit={handleFormSubmit} ref={formRef}> {/* 🔹 Attach ref here */}
+                <form onSubmit={handleFormSubmit}>
                     <div className='flex flex-col'>
                         <label>Enter phone number</label>
                         <input
@@ -87,13 +101,14 @@ const Payment = () => {
                             placeholder='e.g. 0712345678'
                         />
 
-                        <label>Amount(Ksh)</label>
+                        <label>Amount (Ksh)</label>
                         <input
                             className='text-black border-none outline-none mb-2 bg-white p-1 rounded-sm'
                             value="100"
                             readOnly
                         />
                     </div>
+
                     <div>
                         <button type='submit' className='bg-green-500 w-full rounded-sm cursor-pointer hover:bg-green-600 text-white p-1'>
                             {loading2 ? "loading..." : "Submit"}
@@ -112,7 +127,7 @@ const Payment = () => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default Payment;
